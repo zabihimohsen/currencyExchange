@@ -4,15 +4,229 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingVertical="@dimen/margin_xxxl"
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/myBalancesTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="@string/my_balances"
+        android:textColor="@color/gray"
+        android:textSize="18sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+    <HorizontalScrollView
+        android:id="@+id/balanceSV"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/myBalancesTV"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginVertical="@dimen/margin_xl"
+        >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="200 EUR"
+                android:textColor="@color/black"
+                android:layout_marginEnd="@dimen/margin_xl"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="350 USD"
+                android:layout_marginHorizontal="@dimen/margin_xl"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0.0 BGN"
+                android:layout_marginHorizontal="@dimen/margin_xl"/>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="200 EUR"
+                android:layout_marginHorizontal="@dimen/margin_xl"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="200 EUR"
+                android:layout_marginHorizontal="@dimen/margin_xl"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="200 EUR"
+                android:layout_marginHorizontal="@dimen/margin_xl"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="200 EUR"
+                android:layout_marginHorizontal="@dimen/margin_xl"/>
+        </LinearLayout>
+    </HorizontalScrollView>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/topGuidline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.15"/>
+    <TextView
+        android:id="@+id/currencyExchangeTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/currency_exchange"
+        android:textColor="@color/gray"
+        android:layout_margin="@dimen/margin_xl"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@id/topGuidline"
+        app:layout_constraintStart_toStartOf="parent"
+
+        />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/sellLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/currencyExchangeTV"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginHorizontal="@dimen/margin_xl"
+        android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/sellIV"
+            android:layout_width="0dp"
+            android:adjustViewBounds="true"
+            app:layout_constraintDimensionRatio="1:1"
+            android:layout_height="40dp"
+            android:layout_margin="@dimen/margin_md"
+            android:src="@drawable/ic_circle_up_solid"
+            android:padding="@dimen/margin_md"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="@string/sell"
+            android:layout_gravity="center"
+            android:textColor="@color/gray_dark"
+            app:layout_constraintStart_toEndOf="@id/sellIV"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="@dimen/margin_md" />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:textSize="16sp"
+            android:minEms="5"
+            android:inputType="numberDecimal"
+            android:hint="@string/amount"
+            android:padding="@dimen/margin_xl"
+            app:layout_constraintEnd_toStartOf="@id/sellSP"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginEnd="@dimen/margin_md"
+            />
+        <Spinner
+            android:id="@+id/sellSP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:entries="@array/currencies"
+            android:padding="@dimen/margin_xl"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/receiveLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/sellLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginHorizontal="@dimen/margin_xl"
+        android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/buyIV"
+            android:layout_width="0dp"
+            android:adjustViewBounds="true"
+            app:layout_constraintDimensionRatio="1:1"
+            android:layout_height="40dp"
+            android:layout_margin="@dimen/margin_md"
+            android:src="@drawable/ic_circle_down_solid"
+            android:padding="@dimen/margin_md"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="@string/receive"
+            android:layout_gravity="center"
+            android:textColor="@color/gray_dark"
+            app:layout_constraintStart_toEndOf="@id/buyIV"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="@dimen/margin_md" />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:textSize="16sp"
+            android:minEms="5"
+            android:inputType="numberDecimal"
+            android:hint="@string/amount"
+            android:padding="@dimen/margin_xl"
+            app:layout_constraintEnd_toStartOf="@id/buySP"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginEnd="@dimen/margin_md"
+            />
+        <Spinner
+            android:id="@+id/buySP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:entries="@array/currencies"
+            android:padding="@dimen/margin_xl"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.4"/>
+    <Button
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_xxl"
+        app:layout_constraintTop_toBottomOf="@id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="@string/submit"
+        android:textColor="@color/white"
+        android:background="@drawable/rounded_shape"
+        app:layout_constraintWidth_percent="0.5"
+        android:paddingVertical="@dimen/margin_md"
+
+     />
 </androidx.constraintlayout.widget.ConstraintLayout>
