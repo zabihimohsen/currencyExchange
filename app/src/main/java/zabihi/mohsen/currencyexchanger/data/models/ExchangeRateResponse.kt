@@ -9,9 +9,9 @@ data class ExchangeRateResponse(
     @SerializedName("date")
     val date: String,
     @SerializedName("rates")
-    val rates: Rates,
+    val rates: HashMap<String,Double>,
     @SerializedName("success")
     val success: Boolean,
     @SerializedName("timestamp")
-    val timestamp: Int
+    val timestamp: Long
 )

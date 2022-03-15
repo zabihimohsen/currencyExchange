@@ -13,6 +13,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import zabihi.mohsen.currencyexchanger.data.Constants
 import zabihi.mohsen.currencyexchanger.data.ExchangeApi
+import zabihi.mohsen.currencyexchanger.data.preferences.PreferenceProvider
 import zabihi.mohsen.currencyexchanger.mainactivity.MainRepository
 import zabihi.mohsen.currencyexchanger.mainactivity.MainRepositoryInterface
 import zabihi.mohsen.currencyexchanger.util.DispatcherProvider
@@ -44,7 +45,7 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideMainRepositoryInterface( api : ExchangeApi): MainRepositoryInterface = MainRepository(api)
+    fun provideMainRepositoryInterface( api : ExchangeApi,preferenceProvider: PreferenceProvider): MainRepositoryInterface = MainRepository(api,preferenceProvider)
 
     @Singleton
     @Provides

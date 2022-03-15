@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collect
 import zabihi.mohsen.currencyexchanger.databinding.ActivityMainBinding
 import zabihi.mohsen.currencyexchanger.mainactivity.MainViewModel
@@ -14,6 +16,7 @@ import zabihi.mohsen.currencyexchanger.mainactivity.MainViewModel
 class MainActivity : AppCompatActivity() {
     private lateinit var  binding: ActivityMainBinding
     private val viewModel : MainViewModel by viewModels()
+    private lateinit var  job : Job
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -28,19 +31,26 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launchWhenCreated {
             viewModel.conversion.collect{event->
                 when(event){
-                    is MainViewModel.CurrencyEvent.Success -> {
-                        binding.progressBar.isVisible = false
+                    is MainViewModel.CurrencyEvent.Message -> {
+                        val builder = AlertDialog.Builder(this@MainActivity)
+                        builder.setTitle("Done")
+                        builder.setMessage(event.result)
+                        builder.setNeutralButton("Ok") { dialog, which ->
+
+                        }
+                        builder.show()
                     }
-                    is MainViewModel.CurrencyEvent.Failure -> {
-                        binding.progressBar.isVisible = false
-                    }
+
                     is MainViewModel.CurrencyEvent.LoadingStatus -> {
-                        binding.progressBar.isVisible = true
                     }
                     else -> Unit // init state
                 }
             }
-        }
 
+        }
+        job = viewModel.repeatFun()
+        job.start()
     }
+
+
 }
