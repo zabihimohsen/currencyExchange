@@ -6,7 +6,7 @@ import retrofit2.http.Query
 import zabihi.mohsen.currencyexchanger.data.models.ExchangeRateResponse
 
 interface ExchangeApi {
-    @GET("latest")
+    @GET(Constants.latestEndPoint)
     suspend fun getConversionRates(
         @Query("access_key")  accessKey : String
     ):Response<ExchangeRateResponse>
