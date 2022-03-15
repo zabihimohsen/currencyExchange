@@ -7,8 +7,8 @@
 - Handled all possible balance and calculation errors.
 ## Libraries & Technologies Used
 	LiveData
-	 Retrofit
-	 ViewBinding
+	Retrofit
+	ViewBinding
 	Room
 	Coroutines
 	StateFlow
@@ -24,3 +24,8 @@ API is called every 5 seconds by default which is configured by `apiCallInterval
 const val apiCallInterval : Long = 5000 //  Milliseconds.
 ```
 ##Screenshots
+
+| Light Theme|Dark Theme(Night)|
+| ------------ | ------------ |
+|![](https://i.ibb.co/BPJbyhT/1.png)  |  ![](https://i.ibb.co/tsqRYhq/dark-1.png)|
+|![](https://i.ibb.co/zHp76GH/2.png) |  ![](https://i.ibb.co/HCm0kmH/dark-2.png)|
